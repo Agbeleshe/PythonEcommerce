@@ -1,0 +1,35 @@
+{% extends 'store/main.html' %}
+{% load static %} 
+{% block content %}
+
+<h3>Store</h3>
+<div class="row">
+  {% for product in products %}
+  <div class="col-lg-4">
+    <div class="box-element product">
+      
+      <img class="thumbnail" src="{{product.imageURL}}" />
+    
+      <h6><strong>{{product.name}}</strong></h6>
+      <hr />
+      <!-- We are using the class of update-cart for javascript
+      We are also setting custom attributes like
+    1. data-product={{product.id}} 
+    2. data-action="add" 
+      -->
+      <button
+        data-product="{{product.id}}"
+        data-action="add"
+        class="btn btn-outline-secondary add-btn update-cart"
+      >
+        Add to Cart
+      </button>
+      <a class="btn btn-outline-success" href="#">View</a>
+      <h4 class="product-amount">
+        <strong><strike class="naira">N</strike>{{product.price|floatformat:2}}</strong>
+      </h4>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock content %}
